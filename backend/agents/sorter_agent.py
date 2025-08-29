@@ -186,7 +186,10 @@ class SorterAgent:
         for risk_level in ['safe', 'threat', 'suspicious']:
             risk_data = df_sorted[df_sorted['risk_level'] == risk_level]
             if len(risk_data) > 0:
-                filename = f"data/{risk_level}_contacts.csv" if risk_level != "threat" else f"data/threats/{risk_level}_contacts.csv"
+                if risk_level == "threat":
+                    filename = f"data/threats/{risk_level}_contacts.csv"
+                else:
+                    filename = f"data/verified/all_{risk_level}_contacts.csv"  # Avoid duplicate with org-type files
                 risk_data.to_csv(filename, index=False)
                 output_files[filename] = len(risk_data)
                 print(f"  🔒 {filename}: {len(risk_data)} records")

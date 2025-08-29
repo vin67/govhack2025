@@ -1,12 +1,12 @@
 {
-  "sorting_timestamp": "2025-08-30T04:54:56.980153",
+  "sorting_timestamp": "2025-08-30T06:49:35.949241",
   "agent_info": {
     "agent_id": "sorter_agent",
     "version": "1.0",
     "processing_complete": true
   },
   "input_data": {
-    "source_file": "standardized_contacts.csv",
+    "source_file": "data/standardized_contacts.csv",
     "total_records_processed": 415,
     "quality_grade": "A"
   },
@@ -47,13 +47,14 @@
     "safety_rate": 96.9
   },
   "output_files": {
-    "government_contacts.csv": 131,
-    "hospital_contacts.csv": 266,
-    "charity_contacts.csv": 5,
-    "threat_contacts.csv": 13,
-    "safe_contacts.csv": 402,
-    "high_priority_contacts.csv": 397,
-    "sorted_contacts_master.csv": 415
+    "data/verified/government_contacts.csv": 131,
+    "data/verified/hospital_contacts.csv": 266,
+    "data/verified/charity_contacts.csv": 5,
+    "data/verified/threat_contacts.csv": 13,
+    "data/verified/all_safe_contacts.csv": 402,
+    "data/threats/threat_contacts.csv": 13,
+    "data/verified/high_priority_contacts.csv": 397,
+    "data/sorted_contacts_master.csv": 415
   },
   "anti_scam_summary": {
     "verified_safe_contacts": 402,
