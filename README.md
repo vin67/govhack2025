@@ -106,9 +106,31 @@ source venv/bin/activate  # On Windows: venv\\Scripts\\activate
 pip install -r requirements.txt
 ```
 
+**Important**: You must use a virtual environment for the pipeline to work correctly. The individual agent scripts are executed as separate processes and need access to the installed packages.
+
+### **Testing with Fresh Data (Recommended)**
+
+To test the system's live data collection capabilities, first clear existing data files:
+
+```bash
+# Clear all data files to force fresh collection from web sources
+find data/ -name "*.csv" -delete && find data/ -name "*.json" -delete
+
+# Or remove specific categories
+rm -rf data/raw/* data/verified/* data/threats/* data/reports/*
+rm data/standardized_contacts.csv data/sorted_contacts_master.csv
+```
+
+This ensures the pipeline fetches fresh data from:
+- directory.gov.au (federal services)
+- NSW Health API (hospitals)  
+- service.nsw.gov.au (government agencies)
+- scamwatch.gov.au (threat intelligence)
+
 ### **Running the Complete Pipeline**
 ```bash
-# Run the full multi-agent pipeline
+# Activate virtual environment and run the full multi-agent pipeline
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 python backend/run_pipeline.py
 ```
 
@@ -121,6 +143,9 @@ This will execute all agents in sequence:
 ### **Running Individual Agents**
 
 ```bash
+# Activate virtual environment first
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
 # Run specific data collectors
 python backend/agents/gov_services_scraper.py          # Federal services (109 records)
 python backend/agents/nsw_hospitals_agent.py           # NSW hospitals (266 records)

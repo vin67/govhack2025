@@ -152,10 +152,10 @@ class CoordinatorAgent(BaseAgent):
         
         # Run collector agents
         collector_tasks = [
-            ('government_services_scraper', 'gov_services_scraper.py'),
-            ('nsw_hospitals_agent', 'nsw_hospitals_agent.py'), 
-            ('scamwatch_threat_agent', 'scamwatch_threat_agent.py'),
-            # ('acnc_data_agent', 'acnc_data_agent.py')  # Optional if charity data needed
+            ('government_services_scraper', 'backend/agents/gov_services_scraper.py'),
+            ('nsw_hospitals_agent', 'backend/agents/nsw_hospitals_agent.py'), 
+            ('scamwatch_threat_agent', 'backend/agents/scamwatch_threat_agent.py'),
+            # ('acnc_data_agent', 'backend/agents/acnc_data_agent.py')  # Optional if charity data needed
         ]
         
         for agent_name, script_file in collector_tasks:
@@ -234,7 +234,7 @@ class CoordinatorAgent(BaseAgent):
         )
         
         # Execute standardization
-        success = await self.execute_collector_script('data_standardizer.py')
+        success = await self.execute_collector_script('backend/utils/data_standardizer.py')
         
         if success:
             print(f"  ✅ Data standardization completed")
@@ -261,7 +261,7 @@ class CoordinatorAgent(BaseAgent):
         )
         
         # Execute critic agent
-        success = await self.execute_collector_script('critic_agent.py')
+        success = await self.execute_collector_script('backend/agents/critic_agent.py')
         
         if success:
             # Load quality score
@@ -298,7 +298,7 @@ class CoordinatorAgent(BaseAgent):
         )
         
         # Execute sorter agent
-        success = await self.execute_collector_script('sorter_agent.py')
+        success = await self.execute_collector_script('backend/agents/sorter_agent.py')
         
         if success:
             # Load sorting report
@@ -412,9 +412,9 @@ async def main():
     coordinator = CoordinatorAgent()
     
     # Register agent proxies
-    coordinator.register_agent(CollectorAgentProxy("government_services_scraper", "gov_services_scraper.py"))
-    coordinator.register_agent(CollectorAgentProxy("nsw_hospitals_agent", "nsw_hospitals_agent.py"))
-    coordinator.register_agent(CollectorAgentProxy("scamwatch_threat_agent", "scamwatch_threat_agent.py"))
+    coordinator.register_agent(CollectorAgentProxy("government_services_scraper", "backend/agents/gov_services_scraper.py"))
+    coordinator.register_agent(CollectorAgentProxy("nsw_hospitals_agent", "backend/agents/nsw_hospitals_agent.py"))
+    coordinator.register_agent(CollectorAgentProxy("scamwatch_threat_agent", "backend/agents/scamwatch_threat_agent.py"))
     coordinator.register_agent(CriticAgentProxy())
     coordinator.register_agent(SorterAgentProxy())
     
