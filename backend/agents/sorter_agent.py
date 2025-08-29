@@ -15,8 +15,8 @@ import asyncio
 class SorterAgent:
     def __init__(self):
         self.agent_id = "sorter_agent"
-        self.input_file = 'standardized_contacts.csv'
-        self.quality_report_file = 'critic_report.json'
+        self.input_file = 'data/standardized_contacts.csv'
+        self.quality_report_file = 'data/reports/critic_report.json'
         
         # Risk assessment criteria
         self.risk_levels = {
@@ -177,7 +177,7 @@ class SorterAgent:
         # 1. By Organization Type
         for org_type in df_sorted['organization_type'].unique():
             org_data = df_sorted[df_sorted['organization_type'] == org_type]
-            filename = f"{org_type}_contacts.csv"
+            filename = f"data/verified/{org_type}_contacts.csv"
             org_data.to_csv(filename, index=False)
             output_files[filename] = len(org_data)
             print(f"  📄 {filename}: {len(org_data)} records")
@@ -186,7 +186,7 @@ class SorterAgent:
         for risk_level in ['safe', 'threat', 'suspicious']:
             risk_data = df_sorted[df_sorted['risk_level'] == risk_level]
             if len(risk_data) > 0:
-                filename = f"{risk_level}_contacts.csv"
+                filename = f"data/{risk_level}_contacts.csv" if risk_level != "threat" else f"data/threats/{risk_level}_contacts.csv"
                 risk_data.to_csv(filename, index=False)
                 output_files[filename] = len(risk_data)
                 print(f"  🔒 {filename}: {len(risk_data)} records")
@@ -194,13 +194,13 @@ class SorterAgent:
         # 3. High Priority Contacts (for emergency response)
         high_priority = df_sorted[df_sorted['priority_score'] < 2]
         if len(high_priority) > 0:
-            filename = "high_priority_contacts.csv"
+            filename = "data/verified/high_priority_contacts.csv"
             high_priority.to_csv(filename, index=False)
             output_files[filename] = len(high_priority)
             print(f"  ⚡ {filename}: {len(high_priority)} records")
         
         # 4. Master sorted file
-        filename = "sorted_contacts_master.csv"
+        filename = "data/sorted_contacts_master.csv"
         df_sorted.to_csv(filename, index=False)
         output_files[filename] = len(df_sorted)
         print(f"  📋 {filename}: {len(df_sorted)} records (complete sorted dataset)")
@@ -247,7 +247,7 @@ class SorterAgent:
         }
         
         # Save report
-        report_filename = 'sorter_report.json'
+        report_filename = 'data/reports/sorter_report.json'
         with open(report_filename, 'w', encoding='utf-8') as f:
             json.dump(report, f, indent=2, default=str)
         

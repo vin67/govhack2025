@@ -246,7 +246,7 @@ class ScamwatchThreatAgent:
         
         return threat_data
     
-    def save_threat_data(self, threat_data, filename='scamwatch_threats.csv'):
+    def save_threat_data(self, threat_data, filename='data/raw/scamwatch_threats.csv'):
         """Save threat intelligence to CSV"""
         if not threat_data:
             print("No threat data to save")

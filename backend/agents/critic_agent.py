@@ -14,8 +14,8 @@ from collections import defaultdict
 
 class CriticAgent:
     def __init__(self):
-        self.input_file = 'standardized_contacts.csv'
-        self.output_file = 'critic_report.json'
+        self.input_file = 'data/standardized_contacts.csv'
+        self.output_file = 'data/reports/critic_report.json'
         
         self.quality_rules = {
             'phone_validation': {

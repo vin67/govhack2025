@@ -227,8 +227,8 @@ class CoordinatorAgent(BaseAgent):
             MessageType.TASK_REQUEST,
             {
                 'task': 'standardize_data',
-                'input_files': ['government_services.csv', 'nsw_hospitals.csv', 'scamwatch_threats.csv'],
-                'output_file': 'standardized_contacts.csv'
+                'input_files': ['data/raw/government_services.csv', 'data/raw/nsw_hospitals.csv', 'data/raw/scamwatch_threats.csv'],
+                'output_file': 'data/standardized_contacts.csv'
             },
             conversation_id
         )
@@ -254,8 +254,8 @@ class CoordinatorAgent(BaseAgent):
             MessageType.TASK_REQUEST,
             {
                 'task': 'quality_review',
-                'input_file': 'standardized_contacts.csv',
-                'output_file': 'critic_report.json'
+                'input_file': 'data/standardized_contacts.csv',
+                'output_file': 'data/reports/critic_report.json'
             },
             conversation_id
         )
@@ -266,7 +266,7 @@ class CoordinatorAgent(BaseAgent):
         if success:
             # Load quality score
             try:
-                with open('critic_report.json', 'r') as f:
+                with open('data/reports/critic_report.json', 'r') as f:
                     report = json.load(f)
                     quality_score = report['quality_assessment']['overall_quality_score']
                     quality_grade = report['quality_assessment']['quality_grade']
@@ -291,8 +291,8 @@ class CoordinatorAgent(BaseAgent):
             MessageType.TASK_REQUEST,
             {
                 'task': 'sort_and_categorize',
-                'input_file': 'standardized_contacts.csv',
-                'quality_report': 'critic_report.json'
+                'input_file': 'data/standardized_contacts.csv',
+                'quality_report': 'data/reports/critic_report.json'
             },
             conversation_id
         )
@@ -303,7 +303,7 @@ class CoordinatorAgent(BaseAgent):
         if success:
             # Load sorting report
             try:
-                with open('sorter_report.json', 'r') as f:
+                with open('data/reports/sorter_report.json', 'r') as f:
                     report = json.load(f)
                     safe_contacts = report['quality_metrics']['safe_contacts']
                     threat_indicators = report['quality_metrics']['threat_indicators']
@@ -338,14 +338,14 @@ class CoordinatorAgent(BaseAgent):
                 'grade': 'A' if self.pipeline_status['data_quality_score'] and self.pipeline_status['data_quality_score'] >= 0.9 else 'B'
             },
             'output_files': [
-                'standardized_contacts.csv',
-                'critic_report.json', 
-                'validation_report.json'
+                'data/standardized_contacts.csv',
+                'data/reports/critic_report.json', 
+                'data/reports/validation_report.json'
             ]
         }
         
         # Save report
-        with open('pipeline_report.json', 'w') as f:
+        with open('data/reports/pipeline_report.json', 'w') as f:
             json.dump(report, f, indent=2, default=str)
         
         print(f"✅ Completed Agents: {len(report['pipeline_execution']['completed_agents'])}")
@@ -354,7 +354,7 @@ class CoordinatorAgent(BaseAgent):
         if report['data_quality']['overall_score']:
             print(f"🎯 Data Quality: {report['data_quality']['grade']} ({report['data_quality']['overall_score']:.2f})")
         
-        print(f"\n📄 Pipeline report saved to: pipeline_report.json")
+        print(f"\n📄 Pipeline report saved to: data/reports/pipeline_report.json")
         
         return report
     

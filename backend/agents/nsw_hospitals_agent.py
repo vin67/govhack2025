@@ -208,7 +208,7 @@ class NSWHospitalsAgent:
         
         return ""
     
-    def save_to_csv(self, hospitals_data, filename='nsw_hospitals.csv'):
+    def save_to_csv(self, hospitals_data, filename='data/raw/nsw_hospitals.csv'):
         """Save hospitals data to CSV"""
         if not hospitals_data:
             print("No hospitals data to save")

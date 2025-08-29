@@ -31,11 +31,11 @@ class DataStandardizer:
             'notes'                # Additional metadata
         ]
         
-        self.output_file = 'standardized_contacts.csv'
+        self.output_file = 'data/standardized_contacts.csv'
         
     def standardize_government_services(self):
         """Standardize federal government services data"""
-        filepath = Path('government_services.csv')
+        filepath = Path('data/raw/government_services.csv')
         if not filepath.exists():
             print(f"  ✗ {filepath} not found")
             return []
@@ -138,7 +138,7 @@ class DataStandardizer:
     
     def standardize_nsw_hospitals(self):
         """Standardize NSW hospitals data"""
-        filepath = Path('nsw_hospitals.csv')
+        filepath = Path('data/raw/nsw_hospitals.csv')
         if not filepath.exists():
             print(f"  ✗ {filepath} not found")
             return []
@@ -200,7 +200,7 @@ class DataStandardizer:
     
     def standardize_scam_threats(self):
         """Standardize scamwatch threat data"""
-        filepath = Path('scamwatch_threats.csv')
+        filepath = Path('data/raw/scamwatch_threats.csv')
         if not filepath.exists():
             print(f"  ✗ {filepath} not found")
             return []
