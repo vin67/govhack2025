@@ -116,6 +116,9 @@ To test the system's live data collection capabilities, first clear existing dat
 # Clear all data files to force fresh collection from web sources
 find data/ -name "*.csv" -delete && find data/ -name "*.json" -delete
 
+# Clear generated dashboards to test live visualization agent
+rm frontend/live_dashboard.html
+
 # Or remove specific categories
 rm -rf data/raw/* data/verified/* data/threats/* data/reports/*
 rm data/standardized_contacts.csv data/sorted_contacts_master.csv
