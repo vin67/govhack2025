@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large data files (optional - comment out if you want to include them)
+# *.csv
+# *.json
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# API keys and secrets
+.env
+secrets.txt
+config.ini
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Output files that are generated
+pipeline_report.json
+validation_report.json
+critic_report.json
+
+# Test files
+test_*.csv
+*_test.csv
