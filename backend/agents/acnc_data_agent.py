@@ -243,7 +243,7 @@ def main():
     charities = agent.get_charities_by_location(location)
     
     if charities:
-        filename = f"acnc_charities_{location}.csv"
+        filename = f"data/raw/acnc_charities_{location}.csv"
         agent.save_to_csv(charities, filename)
         
         print(f"\nSample data for {location}:")

@@ -72,7 +72,7 @@ class DataStandardizer:
     
     def standardize_nsw_services(self):
         """Standardize NSW government services data"""
-        filepath = Path('nsw_correct_directory.csv')
+        filepath = Path('data/raw/nsw_correct_directory.csv')
         if not filepath.exists():
             print(f"  ✗ {filepath} not found")
             return []
@@ -236,9 +236,9 @@ class DataStandardizer:
     def standardize_charity_data(self):
         """Standardize charity data if available"""
         charity_files = [
-            'verified_charity_contacts.csv',  # This has the phone numbers we extracted
-            'acnc_charities_picton.csv',     # This has full charity details
-            'acnc_enhanced_picton.csv'
+            'data/raw/verified_charity_contacts.csv',  # This has the phone numbers we extracted
+            'data/raw/acnc_charities_picton.csv',     # This has full charity details from new ACNC agent
+            'data/raw/acnc_enhanced_picton.csv'
         ]
         
         standardized = []

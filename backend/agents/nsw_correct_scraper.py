@@ -220,7 +220,7 @@ class NSWCorrectScraper:
         
         return agencies_data
     
-    def save_to_csv(self, agencies_data, filename='nsw_correct_directory.csv'):
+    def save_to_csv(self, agencies_data, filename='data/raw/nsw_correct_directory.csv'):
         """Save agencies data to CSV"""
         if not agencies_data:
             print("No agencies data to save")
