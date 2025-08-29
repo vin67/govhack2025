@@ -109,7 +109,7 @@ pip install -r requirements.txt
 ### **Running the Complete Pipeline**
 ```bash
 # Run the full multi-agent pipeline
-python agent_framework.py
+python backend/run_pipeline.py
 ```
 
 This will execute all agents in sequence:
@@ -122,34 +122,40 @@ This will execute all agents in sequence:
 
 ```bash
 # Run specific data collectors
-python gov_services_scraper.py          # Federal services (109 records)
-python nsw_hospitals_agent.py           # NSW hospitals (266 records)
-python scamwatch_threat_agent.py        # Threat intelligence (13 indicators)
+python backend/agents/gov_services_scraper.py          # Federal services (109 records)
+python backend/agents/nsw_hospitals_agent.py           # NSW hospitals (266 records)
+python backend/agents/scamwatch_threat_agent.py        # Threat intelligence (13 indicators)
 
 # Run data processing agents
-python data_standardizer.py             # Normalize all datasets
-python critic_agent.py                  # AI quality assessment
-python sorter_agent.py                  # Risk categorization
+python backend/utils/data_standardizer.py              # Normalize all datasets
+python backend/agents/critic_agent.py                  # AI quality assessment
+python backend/agents/sorter_agent.py                  # Risk categorization
 ```
 
 ## 📋 **Output Files**
 
-After running the pipeline, you'll find:
+After running the pipeline, you'll find organized data in the `data/` directory:
 
-### **Categorized Contact Databases**
+### **Categorized Contact Databases** (`data/verified/`)
 - `government_contacts.csv` - 131 verified government contacts
 - `hospital_contacts.csv` - 266 NSW hospital records
 - `charity_contacts.csv` - 5 Picton-area charity contacts
-- `threat_contacts.csv` - 13 known scam indicators
 - `safe_contacts.csv` - 402 verified legitimate contacts
+- `high_priority_contacts.csv` - 397 priority contacts
 
-### **Quality Reports**
+### **Threat Intelligence** (`data/threats/`)
+- `threat_contacts.csv` - 13 known scam indicators
+
+### **Quality Reports** (`data/reports/`)
 - `critic_report.json` - Detailed AI quality assessment
 - `sorter_report.json` - Risk categorization analysis  
 - `pipeline_report.json` - Complete execution summary
+- `validation_report.json` - Cross-reference validation results
 
-### **Master Dataset**
-- `standardized_contacts.csv` - All 415 records in common format
+### **Raw & Processed Data**
+- `data/raw/` - Original scraped data from all sources
+- `data/standardized_contacts.csv` - All 415 records in common format
+- `data/sorted_contacts_master.csv` - Complete sorted dataset
 
 ## 🔧 **Extending the System**
 
@@ -157,6 +163,7 @@ After running the pipeline, you'll find:
 
 1. **Create a Collector Agent**:
 ```python
+# Save as backend/agents/my_data_collector.py
 class MyDataCollectorAgent:
     def __init__(self):
         self.source_url = "https://api.example.gov.au/contacts"
@@ -168,9 +175,9 @@ class MyDataCollectorAgent:
 
 2. **Register with Framework**:
 ```python
-# In agent_framework.py
+# In backend/agents/agent_framework.py
 coordinator.register_agent(
-    CollectorAgentProxy("my_data_collector", "my_collector.py")
+    CollectorAgentProxy("my_data_collector", "backend/agents/my_data_collector.py")
 )
 ```
 
@@ -178,7 +185,7 @@ coordinator.register_agent(
 
 Extend the Critic Agent with your own quality checks:
 ```python
-# In critic_agent.py
+# In backend/agents/critic_agent.py
 def validate_custom_format(self, df):
     """Add your custom validation logic"""
     # Example: Validate ABN numbers for charities
