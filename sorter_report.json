@@ -1,0 +1,73 @@
+{
+  "sorting_timestamp": "2025-08-30T04:54:56.980153",
+  "agent_info": {
+    "agent_id": "sorter_agent",
+    "version": "1.0",
+    "processing_complete": true
+  },
+  "input_data": {
+    "source_file": "standardized_contacts.csv",
+    "total_records_processed": 415,
+    "quality_grade": "A"
+  },
+  "categorization_results": {
+    "by_organization_type": {
+      "hospital": 266,
+      "government": 131,
+      "threat": 13,
+      "charity": 5
+    },
+    "by_contact_type": {
+      "phone": 397,
+      "email": 10,
+      "website": 6,
+      "general": 2
+    },
+    "by_risk_level": {
+      "safe": 402,
+      "threat": 13
+    },
+    "by_geographic_region": {
+      "NSW": 293,
+      "Federal": 109,
+      "Unknown": 13
+    },
+    "by_category": {
+      "Healthcare Services": 266,
+      "Official Services": 131,
+      "Security Threats": 13,
+      "Community Services": 5
+    }
+  },
+  "quality_metrics": {
+    "average_confidence_score": 0.924,
+    "high_priority_contacts": 397,
+    "safe_contacts": 402,
+    "threat_indicators": 13,
+    "safety_rate": 96.9
+  },
+  "output_files": {
+    "government_contacts.csv": 131,
+    "hospital_contacts.csv": 266,
+    "charity_contacts.csv": 5,
+    "threat_contacts.csv": 13,
+    "safe_contacts.csv": 402,
+    "high_priority_contacts.csv": 397,
+    "sorted_contacts_master.csv": 415
+  },
+  "anti_scam_summary": {
+    "verified_safe_contacts": 402,
+    "threat_indicators_identified": 13,
+    "contacts_requiring_verification": 0,
+    "ready_for_whitelist": 402,
+    "ready_for_blacklist": 13
+  },
+  "recommendations": [
+    {
+      "category": "security",
+      "priority": "critical",
+      "issue": "13 threat indicators found",
+      "recommendation": "Immediately blacklist identified threat contacts"
+    }
+  ]
+}

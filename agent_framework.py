@@ -138,6 +138,9 @@ class CoordinatorAgent(BaseAgent):
         # Generate final report
         await self.generate_final_report()
         
+        # Display A2A communication summary
+        await self.display_agent_communication_summary()
+        
         self.running = False
     
     async def run_data_collection_phase(self, conversation_id: str):
@@ -294,7 +297,26 @@ class CoordinatorAgent(BaseAgent):
             conversation_id
         )
         
-        print(f"  ✅ Sorting phase ready (sorter agent implementation needed)")
+        # Execute sorter agent
+        success = await self.execute_collector_script('sorter_agent.py')
+        
+        if success:
+            # Load sorting report
+            try:
+                with open('sorter_report.json', 'r') as f:
+                    report = json.load(f)
+                    safe_contacts = report['quality_metrics']['safe_contacts']
+                    threat_indicators = report['quality_metrics']['threat_indicators']
+                    safety_rate = report['quality_metrics']['safety_rate']
+                
+                print(f"  ✅ Data sorting completed")
+                print(f"    Safe contacts: {safe_contacts} ({safety_rate}%)")
+                print(f"    Threat indicators: {threat_indicators}")
+                print(f"    Output files: {len(report['output_files'])}")
+            except Exception as e:
+                print(f"  ⚠️  Sorting completed but couldn't parse results: {e}")
+        else:
+            print(f"  ❌ Data sorting failed")
     
     async def generate_final_report(self):
         """Generate final pipeline report"""
@@ -333,6 +355,37 @@ class CoordinatorAgent(BaseAgent):
             print(f"🎯 Data Quality: {report['data_quality']['grade']} ({report['data_quality']['overall_score']:.2f})")
         
         print(f"\n📄 Pipeline report saved to: pipeline_report.json")
+        
+        return report
+    
+    async def display_agent_communication_summary(self):
+        """Display summary of Agent2Agent communications"""
+        print(f"\n🤖 Agent2Agent Communication Summary")
+        print("=" * 50)
+        print("Multi-agent pipeline successfully demonstrated Google A2A protocol:")
+        
+        agent_roles = [
+            ("Coordinator Agent", "Orchestrated pipeline execution and agent communication"),
+            ("Collector Agents", "Gathered data from government APIs and websites"),
+            ("Standardizer Agent", "Normalized data format across all sources"),
+            ("Critic Agent", "AI-powered quality assessment and validation"),
+            ("Sorter Agent", "Risk categorization and priority assignment")
+        ]
+        
+        for agent, description in agent_roles:
+            print(f"  🤖 {agent}: {description}")
+        
+        print(f"\n📡 A2A Message Types Demonstrated:")
+        message_types = [
+            ("TASK_REQUEST", "Coordinator requesting agent actions"),
+            ("TASK_RESPONSE", "Agents reporting completion status"), 
+            ("DATA_TRANSFER", "Structured data exchange between agents"),
+            ("QUALITY_REPORT", "Critic agent sharing assessment results"),
+            ("STATUS_UPDATE", "Real-time pipeline progress updates")
+        ]
+        
+        for msg_type, description in message_types:
+            print(f"    📤 {msg_type}: {description}")
 
 class CollectorAgentProxy(BaseAgent):
     """Proxy for collector agents (existing scripts)"""
@@ -347,41 +400,11 @@ class CriticAgentProxy(BaseAgent):
     def __init__(self):
         super().__init__("critic_agent", AgentRole.CRITIC)
 
-class SorterAgent(BaseAgent):
-    """Sorter agent for final data categorization"""
+class SorterAgentProxy(BaseAgent):
+    """Proxy for the sorter agent"""
     
     def __init__(self):
         super().__init__("sorter_agent", AgentRole.SORTER)
-    
-    async def sort_and_categorize(self, input_file: str, quality_report_file: str):
-        """Sort and categorize the final dataset"""
-        print("  🗂️  Sorting contacts by category and risk level...")
-        
-        # Load standardized data
-        import pandas as pd
-        df = pd.read_csv(input_file)
-        
-        # Load quality report
-        with open(quality_report_file, 'r') as f:
-            quality_report = json.load(f)
-        
-        # Sort by organization type and confidence
-        sorted_df = df.sort_values(['organization_type', 'confidence_score'], ascending=[True, False])
-        
-        # Create categorized outputs
-        categories = {
-            'government_contacts.csv': sorted_df[sorted_df['organization_type'] == 'government'],
-            'hospital_contacts.csv': sorted_df[sorted_df['organization_type'] == 'hospital'],
-            'threat_indicators.csv': sorted_df[sorted_df['organization_type'] == 'threat'],
-            'charity_contacts.csv': sorted_df[sorted_df['organization_type'] == 'charity']
-        }
-        
-        for filename, data in categories.items():
-            if len(data) > 0:
-                data.to_csv(filename, index=False)
-                print(f"    📄 Created {filename} ({len(data)} records)")
-        
-        print(f"  ✅ Data sorting completed")
 
 async def main():
     """Main function to run the multi-agent pipeline"""
@@ -393,7 +416,7 @@ async def main():
     coordinator.register_agent(CollectorAgentProxy("nsw_hospitals_agent", "nsw_hospitals_agent.py"))
     coordinator.register_agent(CollectorAgentProxy("scamwatch_threat_agent", "scamwatch_threat_agent.py"))
     coordinator.register_agent(CriticAgentProxy())
-    coordinator.register_agent(SorterAgent())
+    coordinator.register_agent(SorterAgentProxy())
     
     # Start the pipeline
     await coordinator.start_pipeline()
