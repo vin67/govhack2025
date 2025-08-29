@@ -31,7 +31,7 @@ These scrapers are proven successful and are actively used in `backend/agents/ag
 - **Status**: ✅ ACTIVE - Essential for threat detection
 
 ### 4. **acnc_data_agent.py** ✅
-- **Success Rate**: 90% (12/13 charities found)
+- **Success Rate**: 90% (5/5 charities in final dataset)
 - **Data Source**: https://data.gov.au ACNC dataset + website scraping
 - **Method**: Two-stage: CSV download + website contact extraction
 - **Output**: `data/raw/acnc_charities_picton.csv`
@@ -134,7 +134,7 @@ Files to avoid in agent_framework.py:
 - ✅ government_services_scraper (109 records)
 - ✅ nsw_hospitals_agent (266 records)  
 - ✅ scamwatch_threat_agent (13 records)
-- ✅ acnc_data_agent (12 records)
+- ✅ acnc_data_agent (5 records)
 - ✅ nsw_correct_scraper (9 records)
 
 **Results**: 402 safe contacts, 13 threat indicators, Grade A quality (95%)

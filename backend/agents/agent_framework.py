@@ -28,6 +28,7 @@ class AgentRole(Enum):
     COLLECTOR = "collector"
     CRITIC = "critic"
     SORTER = "sorter"
+    PROCESSOR = "processor"
 
 @dataclass
 class A2AMessage:
@@ -134,6 +135,9 @@ class CoordinatorAgent(BaseAgent):
         
         # Phase 4: Final Sorting and Output
         await self.run_sorting_phase(conversation_id)
+        
+        # Phase 5: Live Dashboard Generation
+        await self.run_visualization_phase(conversation_id)
         
         # Generate final report
         await self.generate_final_report()
@@ -319,6 +323,35 @@ class CoordinatorAgent(BaseAgent):
         else:
             print(f"  ❌ Data sorting failed")
     
+    async def run_visualization_phase(self, conversation_id: str):
+        """Phase 5: Generate live dashboard visualization"""
+        print(f"\n🎨 Phase 5: Live Dashboard Generation")
+        print("-" * 30)
+        
+        self.pipeline_status['current_phase'] = 'visualization'
+        
+        # Send visualization request
+        await self.send_message(
+            'visualization_agent',
+            MessageType.TASK_REQUEST,
+            {
+                'task': 'generate_live_dashboard',
+                'input_reports': ['data/reports/critic_report.json', 'data/reports/sorter_report.json'],
+                'output_file': 'frontend/live_dashboard.html'
+            },
+            conversation_id
+        )
+        
+        # Execute visualization agent
+        success = await self.execute_collector_script('backend/agents/visualization_agent.py')
+        
+        if success:
+            print(f"  ✅ Live dashboard generated: frontend/live_dashboard.html")
+            print(f"  🌐 Dashboard includes real-time data from all pipeline agents")
+            print(f"  📱 Accessible, responsive design with A2A integration")
+        else:
+            print(f"  ❌ Dashboard generation failed")
+    
     async def generate_final_report(self):
         """Generate final pipeline report"""
         print(f"\n📄 Pipeline Summary Report")
@@ -370,7 +403,8 @@ class CoordinatorAgent(BaseAgent):
             ("Collector Agents", "Gathered data from government APIs and websites"),
             ("Standardizer Agent", "Normalized data format across all sources"),
             ("Critic Agent", "AI-powered quality assessment and validation"),
-            ("Sorter Agent", "Risk categorization and priority assignment")
+            ("Sorter Agent", "Risk categorization and priority assignment"),
+            ("Visualization Agent", "Generated live dashboard with A2A integration")
         ]
         
         for agent, description in agent_roles:
@@ -407,6 +441,12 @@ class SorterAgentProxy(BaseAgent):
     def __init__(self):
         super().__init__("sorter_agent", AgentRole.SORTER)
 
+class VisualizationAgentProxy(BaseAgent):
+    """Proxy for the visualization agent"""
+    
+    def __init__(self):
+        super().__init__("visualization_agent", AgentRole.PROCESSOR)
+
 async def main():
     """Main function to run the multi-agent pipeline"""
     # Create coordinator
@@ -420,6 +460,7 @@ async def main():
     coordinator.register_agent(CollectorAgentProxy("nsw_correct_scraper", "backend/agents/nsw_correct_scraper.py"))
     coordinator.register_agent(CriticAgentProxy())
     coordinator.register_agent(SorterAgentProxy())
+    coordinator.register_agent(VisualizationAgentProxy())
     
     # Start the pipeline
     await coordinator.start_pipeline()
