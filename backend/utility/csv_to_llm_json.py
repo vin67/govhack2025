@@ -140,17 +140,26 @@ def csv_to_llm_json(csv_file_path: str, output_file_path: str) -> None:
 
 def main():
     """Main conversion process"""
-    csv_path = "data/sorted_contacts_master.csv"
-    json_path = "ios-app-simple/DigitalGuardianSimple/DigitalGuardianSimple/verified_services.json"
+    # Paths relative to the backend/utility directory
+    csv_path = "../../data/sorted_contacts_master.csv"
+    json_path = "../../data/verified/verified_services.json"
+    ios_path = "../../ios-app-simple/DigitalGuardianSimple/DigitalGuardianSimple/verified_services.json"
     
     print("🔄 Converting CSV to LLM-optimized JSON...")
     print(f"📂 Input: {csv_path}")
     print(f"📂 Output: {json_path}")
+    print(f"📂 iOS Copy: {ios_path}")
     
     try:
+        # Convert to verified folder
         csv_to_llm_json(csv_path, json_path)
         print("\n🎉 Conversion completed successfully!")
         print("✅ Ready for Core ML LLM integration")
+        
+        # Also copy to iOS project for development
+        import shutil
+        shutil.copy2(json_path, ios_path)
+        print(f"📱 Copied to iOS project: {ios_path}")
         
         # Show a sample entry
         with open(json_path, 'r') as f:
