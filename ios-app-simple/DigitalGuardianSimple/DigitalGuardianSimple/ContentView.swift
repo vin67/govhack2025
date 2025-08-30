@@ -33,6 +33,7 @@ struct HomeView: View {
     @Binding var showingAlert: Bool
     @Binding var showingVerification: Bool
     @Binding var showingFamilyCircle: Bool
+    @State private var showingLLMQuery = false
     
     var body: some View {
         NavigationView {
@@ -108,6 +109,16 @@ struct HomeView: View {
                         color: .blue,
                         action: {
                             // TODO: Implement call screening
+                        }
+                    )
+                    
+                    FeatureCard(
+                        icon: "bubble.left.and.text.bubble.right.fill",
+                        title: "Ask Digital Guardian",
+                        description: "Chat with AI about government services",
+                        color: .orange,
+                        action: {
+                            showingLLMQuery = true
                         }
                     )
                     
@@ -192,6 +203,9 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showingFamilyCircle) {
                 FamilyCircleView()
+            }
+            .sheet(isPresented: $showingLLMQuery) {
+                LLMQueryView()
             }
         }
     }
