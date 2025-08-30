@@ -6,9 +6,48 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6ACCB2262E638ABC00F05B3C /* SMSProtectionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6ACCB21C2E638ABC00F05B3C /* SMSProtectionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6ACCB2242E638ABC00F05B3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A3090D52E6299C80088E593 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ACCB21B2E638ABC00F05B3C;
+			remoteInfo = SMSProtectionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6ACCB22B2E638ABC00F05B3C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6ACCB2262E638ABC00F05B3C /* SMSProtectionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6A3090DD2E6299C80088E593 /* DigitalGuardianSimple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalGuardianSimple.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ACCB21C2E638ABC00F05B3C /* SMSProtectionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SMSProtectionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6ACCB2272E638ABC00F05B3C /* Exceptions for "SMSProtectionExtension" folder in "SMSProtectionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6ACCB21B2E638ABC00F05B3C /* SMSProtectionExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6A3090DF2E6299C80088E593 /* DigitalGuardianSimple */ = {
@@ -16,10 +55,25 @@
 			path = DigitalGuardianSimple;
 			sourceTree = "<group>";
 		};
+		6ACCB21D2E638ABC00F05B3C /* SMSProtectionExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6ACCB2272E638ABC00F05B3C /* Exceptions for "SMSProtectionExtension" folder in "SMSProtectionExtension" target */,
+			);
+			path = SMSProtectionExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6A3090DA2E6299C80088E593 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ACCB2192E638ABC00F05B3C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				6A3090DF2E6299C80088E593 /* DigitalGuardianSimple */,
+				6ACCB21D2E638ABC00F05B3C /* SMSProtectionExtension */,
 				6A3090DE2E6299C80088E593 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				6A3090DD2E6299C80088E593 /* DigitalGuardianSimple.app */,
+				6ACCB21C2E638ABC00F05B3C /* SMSProtectionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +111,12 @@
 				6A3090D92E6299C80088E593 /* Sources */,
 				6A3090DA2E6299C80088E593 /* Frameworks */,
 				6A3090DB2E6299C80088E593 /* Resources */,
+				6ACCB22B2E638ABC00F05B3C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6ACCB2252E638ABC00F05B3C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6A3090DF2E6299C80088E593 /* DigitalGuardianSimple */,
@@ -69,6 +127,28 @@
 			productName = DigitalGuardianSimple;
 			productReference = 6A3090DD2E6299C80088E593 /* DigitalGuardianSimple.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6ACCB21B2E638ABC00F05B3C /* SMSProtectionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ACCB2282E638ABC00F05B3C /* Build configuration list for PBXNativeTarget "SMSProtectionExtension" */;
+			buildPhases = (
+				6ACCB2182E638ABC00F05B3C /* Sources */,
+				6ACCB2192E638ABC00F05B3C /* Frameworks */,
+				6ACCB21A2E638ABC00F05B3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6ACCB21D2E638ABC00F05B3C /* SMSProtectionExtension */,
+			);
+			name = SMSProtectionExtension;
+			packageProductDependencies = (
+			);
+			productName = SMSProtectionExtension;
+			productReference = 6ACCB21C2E638ABC00F05B3C /* SMSProtectionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -82,6 +162,10 @@
 				TargetAttributes = {
 					6A3090DC2E6299C80088E593 = {
 						CreatedOnToolsVersion = 26.0;
+					};
+					6ACCB21B2E638ABC00F05B3C = {
+						CreatedOnToolsVersion = 26.0;
+						LastSwiftMigration = 2600;
 					};
 				};
 			};
@@ -100,12 +184,20 @@
 			projectRoot = "";
 			targets = (
 				6A3090DC2E6299C80088E593 /* DigitalGuardianSimple */,
+				6ACCB21B2E638ABC00F05B3C /* SMSProtectionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6A3090DB2E6299C80088E593 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ACCB21A2E638ABC00F05B3C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +214,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6ACCB2182E638ABC00F05B3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6ACCB2252E638ABC00F05B3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ACCB21B2E638ABC00F05B3C /* SMSProtectionExtension */;
+			targetProxy = 6ACCB2242E638ABC00F05B3C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6A3090E62E6299C90088E593 /* Debug */ = {
@@ -249,6 +356,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DigitalGuardianSimple/DigitalGuardianSimple.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 23K7PRGDGA;
@@ -284,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DigitalGuardianSimple/DigitalGuardianSimple.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 23K7PRGDGA;
@@ -314,6 +423,67 @@
 			};
 			name = Release;
 		};
+		6ACCB2292E638ABC00F05B3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SMSProtectionExtension/SMSProtectionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 23K7PRGDGA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SMSProtectionExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SMSProtectionExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.govhack.DigitalGuardianSimple.SMSProtectionExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6ACCB22A2E638ABC00F05B3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SMSProtectionExtension/SMSProtectionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 23K7PRGDGA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SMSProtectionExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SMSProtectionExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.govhack.DigitalGuardianSimple.SMSProtectionExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -331,6 +501,15 @@
 			buildConfigurations = (
 				6A3090E92E6299C90088E593 /* Debug */,
 				6A3090EA2E6299C90088E593 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6ACCB2282E638ABC00F05B3C /* Build configuration list for PBXNativeTarget "SMSProtectionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ACCB2292E638ABC00F05B3C /* Debug */,
+				6ACCB22A2E638ABC00F05B3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,0 +1,53 @@
+TEST SMS MESSAGES FOR DIGITAL GUARDIAN
+=======================================
+
+1. SCAM - ATO Impersonation:
+----------------------------
+ATO: You have a tax refund of $850 pending. Click here to claim immediately: bit.ly/taxrefund2025
+Call 1800 595 160 for assistance.
+
+2. SCAM - Bank Phishing:
+------------------------
+CommBank: Unusual activity detected on your account. Verify your identity now to avoid suspension: tinyurl.com/cbverify
+Contact us at 1800 007 007
+
+3. SCAM - Parcel Delivery:
+--------------------------
+AusPost: Your parcel is held at depot due to unpaid customs fee of $2.50. Pay now: shorturl.at/parcel
+Track at 1800 595 160
+
+4. LEGITIMATE - Real Government:
+--------------------------------
+Services Australia: Your Medicare card is ready for collection at your nearest service centre. 
+Call 132 011 for locations. No action needed if already collected.
+
+5. LEGITIMATE - Real Bank:
+--------------------------
+Commonwealth Bank: Your new debit card ending in 4567 has been dispatched and should arrive within 5 business days.
+Call 13 2221 if not received.
+
+6. SUSPICIOUS - Unknown Pattern:
+--------------------------------
+WINNER: Congratulations! You've won $10,000 in our monthly draw. Claim your prize now!
+Visit www.prizeclaims.net or call 0455 123 456
+
+7. FAMILY TEST - Pretend Family Member:
+---------------------------------------
+Hi, it's Sarah. My phone broke and I'm using a friend's phone. Can you send me $200 urgently? 
+New number: +61 423 456 789
+
+8. LEGITIMATE - Medical:
+------------------------
+Reminder: Your appointment at Royal Melbourne Hospital is tomorrow at 2:30 PM.
+Call 03 9342 7000 to reschedule if needed.
+
+9. SCAM - Investment:
+---------------------
+URGENT: Your investment account shows unusual activity. Secure it now: bit.ly/secureinvest
+Support: 1800 595 160
+
+10. SCAM - Multiple Red Flags:
+------------------------------
+Australian Government: You have an outstanding fine of $389. Pay immediately to avoid arrest.
+Payment link: tinyurl.com/govfine  
+Urgent action required! Call 1800 007 007 now!

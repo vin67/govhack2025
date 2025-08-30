@@ -61,6 +61,28 @@ final class DataManager: ObservableObject {
     
     private init() {
         loadCSVData()
+        copyCSVToAppGroup()
+    }
+    
+    // MARK: - App Group Sharing for Extensions
+    private func copyCSVToAppGroup() {
+        guard let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.org.govhack.digitalguardian"),
+              let bundleURL = Bundle.main.url(forResource: "sorted_contacts_master", withExtension: "csv") else {
+            print("DataManager: Could not access App Group or find CSV")
+            return
+        }
+        
+        let destinationURL = appGroupURL.appendingPathComponent("sorted_contacts_master.csv")
+        
+        // Copy if doesn't exist or update if needed
+        if !FileManager.default.fileExists(atPath: destinationURL.path) {
+            do {
+                try FileManager.default.copyItem(at: bundleURL, to: destinationURL)
+                print("DataManager: CSV copied to App Group for extensions")
+            } catch {
+                print("DataManager: Failed to copy CSV - \(error)")
+            }
+        }
     }
     
     func loadCSVData() {
