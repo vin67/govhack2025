@@ -67,13 +67,22 @@ final class DataManager: ObservableObject {
         isLoading = true
         loadError = nil
         
-        // Try to find CSV in bundle
-        guard let path = Bundle.main.path(forResource: "sorted_contacts_master", ofType: "csv") else {
-            // If CSV not found, use sample data
+        // Try to find CSV in bundle - using the complete dataset with phone, email, and website
+        guard let path = Bundle.main.path(forResource: "nsw_contacts_complete", ofType: "csv") else {
+            // Fall back to sorted_contacts_master if new file not found
+            if let fallbackPath = Bundle.main.path(forResource: "sorted_contacts_master", ofType: "csv") {
+                loadCSVFromPath(fallbackPath)
+                return
+            }
+            // If neither CSV found, use sample data
             loadSampleData()
             return
         }
         
+        loadCSVFromPath(path)
+    }
+    
+    private func loadCSVFromPath(_ path: String) {
         do {
             let csvString = try String(contentsOfFile: path, encoding: .utf8)
             let rows = csvString.components(separatedBy: .newlines)
@@ -172,6 +181,69 @@ final class DataManager: ObservableObject {
                 verifiedDate: "2025-08-30",
                 confidenceScore: 1.0,
                 notes: "Premium rate number - SCAM",
+                riskLevel: "threat",
+                priorityScore: 1.0,
+                geographicRegion: "",
+                category: "Scam"
+            ),
+            Contact(
+                contactId: "sample_3",
+                contactType: "email",
+                contactValue: "enquiries@service.nsw.gov.au",
+                organizationName: "Service NSW",
+                organizationType: "government",
+                sourceAgent: "sample",
+                sourceUrl: "",
+                address: "",
+                suburb: "",
+                state: "NSW",
+                postcode: "",
+                services: "Government services",
+                verifiedDate: "2025-08-30",
+                confidenceScore: 0.95,
+                notes: "Official NSW Government email",
+                riskLevel: "safe",
+                priorityScore: 0.0,
+                geographicRegion: "NSW",
+                category: "Official Services"
+            ),
+            Contact(
+                contactId: "sample_4",
+                contactType: "website",
+                contactValue: "https://www.service.nsw.gov.au",
+                organizationName: "Service NSW",
+                organizationType: "government",
+                sourceAgent: "sample",
+                sourceUrl: "",
+                address: "",
+                suburb: "",
+                state: "NSW",
+                postcode: "",
+                services: "Government services",
+                verifiedDate: "2025-08-30",
+                confidenceScore: 0.95,
+                notes: "Official NSW Government website",
+                riskLevel: "safe",
+                priorityScore: 0.0,
+                geographicRegion: "NSW",
+                category: "Official Services"
+            ),
+            Contact(
+                contactId: "sample_5",
+                contactType: "email",
+                contactValue: "scammer@phishing-site.com",
+                organizationName: "Known Phishing Email",
+                organizationType: "scam",
+                sourceAgent: "sample",
+                sourceUrl: "",
+                address: "",
+                suburb: "",
+                state: "",
+                postcode: "",
+                services: "Phishing scam",
+                verifiedDate: "2025-08-30",
+                confidenceScore: 1.0,
+                notes: "Known phishing email - SCAM",
                 riskLevel: "threat",
                 priorityScore: 1.0,
                 geographicRegion: "",
