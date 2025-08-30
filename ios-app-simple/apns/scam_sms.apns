@@ -1,0 +1,17 @@
+{
+    "Simulator Target Bundle": "org.govhack.DigitalGuardianSimple",
+    "aps": {
+        "alert": {
+            "title": "🚨 SCAM SMS DETECTED 🚨",
+            "subtitle": "ATO Impersonation Attempt",
+            "body": "This is NOT from the Australian Tax Office. Delete this message immediately. The ATO never asks for payment via SMS links."
+        },
+        "sound": "default",
+        "badge": 1,
+        "interruption-level": "critical"
+    },
+    "type": "scam_sms",
+    "riskLevel": "critical",
+    "messageContent": "Your tax refund of $850 is ready. Click here to claim: bit.ly/taxrefund",
+    "scamType": "ato_impersonation"
+}

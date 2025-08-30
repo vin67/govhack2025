@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Vin",
+    "phoneNumber": "+61412345678",
+    "safeWordQuestion": "What was the name of our first pet?"
+  },
+  {
+    "id": "2", 
+    "name": "Robyn",
+    "phoneNumber": "+61423456789",
+    "safeWordQuestion": "What street did we live on when we first met?"
+  },
+  {
+    "id": "3",
+    "name": "Adam", 
+    "phoneNumber": "+61434567890",
+    "safeWordQuestion": "What was your favorite childhood movie?"
+  },
+  {
+    "id": "4",
+    "name": "Jordan",
+    "phoneNumber": "+61445678901", 
+    "safeWordQuestion": "What was the name of your first school?"
+  }
+]

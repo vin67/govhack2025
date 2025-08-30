@@ -1,0 +1,13 @@
+{
+    "Simulator Target Bundle": "org.govhack.DigitalGuardianSimple",
+    "aps": {
+        "alert": {
+            "title": "Incoming Call",
+            "body": "Government Service"
+        },
+        "sound": "default"
+    },
+    "phoneNumber": "131450",
+    "handle": "131450",
+    "callerName": "Translating and Interpreting Service"
+}

@@ -1,0 +1,15 @@
+{
+    "Simulator Target Bundle": "org.govhack.DigitalGuardianSimple",
+    "aps": {
+        "alert": {
+            "title": "Digital Guardian",
+            "body": "Call with Jordan. Remember your safe word if anything feels unsure."
+        },
+        "sound": null,
+        "category": "FAMILY_CALL_REMINDER"
+    },
+    "familyMemberId": "4",
+    "familyMemberName": "Jordan",
+    "safeWordQuestion": "What was the name of your first school?",
+    "type": "gentle_nudge"
+}

@@ -1,0 +1,17 @@
+{
+    "Simulator Target Bundle": "org.govhack.DigitalGuardianSimple",
+    "aps": {
+        "alert": {
+            "title": "⛔ FAKE BANK ALERT ⛔",
+            "subtitle": "Commonwealth Bank Impersonation",
+            "body": "Banks NEVER ask for passwords or PINs via SMS. Call your bank directly using the number on your card."
+        },
+        "sound": "default",
+        "badge": 1,
+        "interruption-level": "critical"
+    },
+    "type": "bank_scam",
+    "riskLevel": "critical",
+    "phoneNumber": "+61488888888",
+    "scamType": "bank_impersonation"
+}

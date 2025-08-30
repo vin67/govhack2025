@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1024 1024">
+  <!-- Generator: Adobe Illustrator 29.7.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 8)  -->
+  <defs>
+    <style>
+      .st0 {
+        stroke: #00c853;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 60px;
+      }
+
+      .st0, .st1 {
+        fill: none;
+      }
+
+      .st1 {
+        isolation: isolate;
+        opacity: .5;
+        stroke: #e3f2fd;
+        stroke-width: 10px;
+      }
+
+      .st2 {
+        fill: #007aff;
+      }
+
+      .st3 {
+        fill: #fff;
+        stroke: #0051d5;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <rect class="st2" width="1024" height="1024"/>
+  <path class="st3" d="M512,100L200,250v250c0,166.7,104,300,312,400,208-100,312-233.3,312-400v-250l-312-150Z"/>
+  <path class="st0" d="M350,450l100,100,200-200"/>
+  <path class="st1" d="M512,200l-212,100v150c0,100,70.7,183.3,212,250,141.3-66.7,212-150,212-250v-150l-212-100Z"/>
+  <g id="Tt5dJL">
+    <image id="Tt5dJL1" data-name="Tt5dJL" width="1024" height="1024" transform="translate(1417.1 1107)" xlink:href="shield_icon-1.png"/>
+  </g>
+  <g id="_x35_dp32Q">
+    <image id="_x35_dp32Q1" data-name="_x35_dp32Q" width="1024" height="1024" transform="translate(116 1107)" xlink:href="shield_icon-2.png"/>
+  </g>
+  <g id="b2aXU0">
+    <image id="b2aXU01" data-name="b2aXU0" width="1024" height="1024" transform="translate(2652.3 1107)" xlink:href="shield_icon-3.png"/>
+  </g>
+</svg>

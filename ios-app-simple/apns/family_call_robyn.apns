@@ -1,0 +1,13 @@
+{
+    "Simulator Target Bundle": "org.govhack.DigitalGuardianSimple",
+    "aps": {
+        "alert": {
+            "title": "Incoming Call",
+            "body": "Robyn calling..."
+        },
+        "sound": "default"
+    },
+    "phoneNumber": "+61423456789",
+    "handle": "+61423456789",
+    "callerName": "Robyn"
+}

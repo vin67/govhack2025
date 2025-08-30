@@ -1,0 +1,13 @@
+{
+    "Simulator Target Bundle": "org.govhack.DigitalGuardianSimple",
+    "aps": {
+        "alert": {
+            "title": "Incoming Call",
+            "body": "Unknown Number"
+        },
+        "sound": "default"
+    },
+    "phoneNumber": "+61499887766",
+    "handle": "+61499887766",
+    "callerName": "Unknown"
+}

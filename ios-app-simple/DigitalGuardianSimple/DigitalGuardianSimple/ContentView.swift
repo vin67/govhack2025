@@ -10,6 +10,29 @@ import SwiftUI
 struct ContentView: View {
     @State private var showingAlert = false
     @State private var showingVerification = false
+    @State private var showingFamilyCircle = false
+    
+    var body: some View {
+        TabView {
+            HomeView(showingAlert: $showingAlert, showingVerification: $showingVerification, showingFamilyCircle: $showingFamilyCircle)
+                .tabItem {
+                    Image(systemName: "shield.checkered")
+                    Text("Protection")
+                }
+            
+            FamilyCircleView()
+                .tabItem {
+                    Image(systemName: "person.3.sequence.fill")
+                    Text("Family Circle")
+                }
+        }
+    }
+}
+
+struct HomeView: View {
+    @Binding var showingAlert: Bool
+    @Binding var showingVerification: Bool
+    @Binding var showingFamilyCircle: Bool
     
     var body: some View {
         NavigationView {
@@ -65,6 +88,16 @@ struct ContentView: View {
                         color: .green,
                         action: {
                             // TODO: Implement SMS sharing
+                        }
+                    )
+                    
+                    FeatureCard(
+                        icon: "person.3.sequence.fill",
+                        title: "Family Circle",
+                        description: "Safe word protection for family",
+                        color: .purple,
+                        action: {
+                            showingFamilyCircle = true
                         }
                     )
                     
@@ -156,6 +189,9 @@ struct ContentView: View {
             .navigationBarHidden(true)
             .sheet(isPresented: $showingVerification) {
                 VerificationView()
+            }
+            .sheet(isPresented: $showingFamilyCircle) {
+                FamilyCircleView()
             }
         }
     }
