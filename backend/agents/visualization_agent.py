@@ -68,12 +68,47 @@ class VisualizationAgent:
             print(f"❌ Error loading standardized data: {str(e)}")
             return None
     
+    def load_api_key(self):
+        """Load API key from secure configuration file"""
+        config_path = Path.home() / ".govhack-config" / "api-keys.env"
+        
+        try:
+            if config_path.exists():
+                with open(config_path, 'r') as f:
+                    for line in f:
+                        line = line.strip()
+                        if line.startswith('ANTHROPIC_API_KEY='):
+                            api_key = line.split('=', 1)[1].strip('"\'')
+                            print("🔑 API key loaded from secure config")
+                            return api_key
+                
+                print("⚠️  ANTHROPIC_API_KEY not found in config file")
+            else:
+                print(f"⚠️  Config file not found: {config_path}")
+        except Exception as e:
+            print(f"❌ Error loading API key: {str(e)}")
+        
+        # Fallback to environment variable
+        api_key = os.getenv('ANTHROPIC_API_KEY')
+        if api_key:
+            print("🔑 API key loaded from environment variable")
+            return api_key
+        
+        print("❌ No API key found in config file or environment")
+        return None
+
     def generate_llm_analysis(self, analysis):
         """Generate real LLM analysis using Anthropic Claude API"""
         try:
             # Check if Anthropic is available
             if Anthropic is None:
                 print("⚠️  Anthropic API not available, using fallback analysis")
+                return self.generate_fallback_analysis(analysis)
+            
+            # Load API key from secure config
+            api_key = self.load_api_key()
+            if not api_key:
+                print("⚠️  No API key available, using fallback analysis")
                 return self.generate_fallback_analysis(analysis)
             
             # Prepare data summary for LLM analysis
@@ -103,12 +138,12 @@ Please analyze the anti-scam effectiveness, data quality, and coverage patterns.
             
             print("🤖 Calling Anthropic Claude API for LLM analysis...")
             
-            # Initialize Anthropic client (will use ANTHROPIC_API_KEY env var)
-            client = Anthropic()
+            # Initialize Anthropic client with API key
+            client = Anthropic(api_key=api_key)
             
             # Make the API call
             message = client.messages.create(
-                model="claude-3-sonnet-20240229",
+                model="claude-3-5-sonnet-20241022",
                 max_tokens=800,
                 temperature=0.7,
                 messages=[
