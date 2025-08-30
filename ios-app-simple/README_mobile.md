@@ -62,14 +62,17 @@ A comprehensive iOS app that protects users from scam calls and SMS messages usi
 3. Test with family member calls (Vin, Robyn, Adam, Jordan)
 
 #### SMS Protection Testing
-1. Open **Reminders** app on simulator
-2. Create reminder with test message:
-   ```
-   ATO: You have a tax refund of $850 pending. Click here to claim immediately: bit.ly/taxrefund2025
-   Call 1800 595 160 for assistance.
-   ```
-3. Long-press text → **Share** → **Digital Guardian**
-4. View threat analysis results
+**Real Messages App Integration:**
+1. Open **Messages** app on simulator
+2. Create or receive SMS messages (works with real conversations)
+3. Long-press on message bubble → **Share** → **Digital Guardian** 
+4. Extension analyzes message against threat database
+5. View comprehensive threat analysis with risk assessment
+
+**Alternative Testing Methods:**
+- **Reminders app**: Create reminder with test message, select text and share
+- **Notes app**: Paste test message, select and share
+- **Any app with text selection**: Select suspicious text and use share sheet
 
 ## Mock Data
 
