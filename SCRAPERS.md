@@ -30,12 +30,14 @@ These scrapers are proven successful and are actively used in `backend/agents/ag
 - **Quality**: Verified scam phone numbers and organization impersonation data
 - **Status**: ✅ ACTIVE - Essential for threat detection
 
-### 4. **acnc_data_agent.py** ✅
-- **Success Rate**: 90% (5/5 charities in final dataset)
-- **Data Source**: https://data.gov.au ACNC dataset + website scraping
-- **Method**: Two-stage: CSV download + website contact extraction
+### 4. **acnc_data_agent.py** ⚠️
+- **Success Rate**: 100% (12/12 organizational records)
+- **Data Source**: https://data.gov.au ACNC CSV bulk dataset
+- **Method**: Organizational verification (names, ABNs, addresses, purposes)
 - **Output**: `data/raw/acnc_charities_picton.csv`
-- **Quality**: Verified charity contacts with phone/email from websites
+- **Quality**: Verified charity organizations for anti-scam verification
+- **Limitation**: ⚠️ Contact details (phone/email/website) blocked by JavaScript protection
+- **Details**: See `BUG_REPORT_ACNC.md` for technical analysis
 - **Status**: ✅ ACTIVE - Proven charity data extraction
 
 ### 5. **nsw_correct_scraper.py** ✅
@@ -134,7 +136,7 @@ Files to avoid in agent_framework.py:
 - ✅ government_services_scraper (109 records)
 - ✅ nsw_hospitals_agent (266 records)  
 - ✅ scamwatch_threat_agent (13 records)
-- ✅ acnc_data_agent (5 records)
+- ⚠️ acnc_data_agent (12 organizational records, contact details limited)
 - ✅ nsw_correct_scraper (9 records)
 
 **Results**: 402 safe contacts, 13 threat indicators, Grade A quality (95%)

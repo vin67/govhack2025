@@ -280,7 +280,7 @@ class DataStandardizer:
                     
                     # Email contact  
                     email_col = next((col for col in df.columns if 'email' in col.lower()), None)
-                    if email_col and pd.notna(row.get(email_col, '')):
+                    if email_col and pd.notna(row.get(email_col, '')) and str(row[email_col]).strip():
                         email_record = base_record.copy()
                         email_record.update({
                             'contact_id': f"{contact_id_base}_email",
@@ -288,8 +288,21 @@ class DataStandardizer:
                             'contact_value': str(row[email_col]).strip()
                         })
                         standardized.append(email_record)
+                    
+                    # Create organizational record even if no phone/email (for charity verification)
+                    # This is valuable for anti-scam purposes - people can verify charity legitimacy
+                    if not phone_col or not pd.notna(row.get(phone_col, '')) or not str(row.get(phone_col, '')).strip():
+                        if not email_col or not pd.notna(row.get(email_col, '')) or not str(row.get(email_col, '')).strip():
+                            # No phone or email - create organizational verification record
+                            org_record = base_record.copy()
+                            org_record.update({
+                                'contact_id': f"{contact_id_base}_org",
+                                'contact_type': 'organization',
+                                'contact_value': f"ABN: {row.get('abn', row.get('ABN', ''))}"
+                            })
+                            standardized.append(org_record)
                 
-                break  # Use first available charity file
+                # Continue to process all available charity files
         
         if standardized:
             print(f"    Standardized {len(standardized)} charity contacts")

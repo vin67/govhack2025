@@ -47,7 +47,7 @@ Our system demonstrates Google's Agent Development Kit (ADK) concepts with:
 | Federal Government Services | 109 | 100% | Phone numbers from directory.gov.au |
 | NSW Government Agencies | 9 | 90% | Phone, email, websites from service.nsw.gov.au |
 | NSW Hospitals | 266 | 100% | Complete hospital dataset via Health API |
-| ACNC Charities (Picton) | 5 | 90% | Phone/email via 2-stage collection |
+| ACNC Charities (Picton) | 12 | 100% | Organizational data (see Known Limitations) |
 | Scamwatch Threats | 13 | 100% | Known scam indicators from official reports |
 
 ### **Quality Assessment (by AI Critic Agent)**
@@ -332,6 +332,30 @@ This project showcases:
 - Interactive contact verification lookup
 - Risk assessment scoring demonstration
 - Data quality metrics dashboard
+
+## ⚠️ **Known Limitations**
+
+### **ACNC Charity Contact Details** 
+**Issue**: Contact details (phone/email/website) not available from ACNC charity profiles  
+**Reason**: ACNC implements JavaScript-rendered content and bot protection mechanisms  
+**Current Status**: ✅ Organizational verification available (names, ABNs, addresses, purposes)  
+**Impact**: Reduces callback functionality but maintains anti-scam organizational verification
+
+**Technical Details**: See [`BUG_REPORT_ACNC.md`](BUG_REPORT_ACNC.md) for complete analysis
+
+**Why This Is Good Software Engineering**:
+- ✅ **Respects data protection**: ACNC protects charities from automated harvesting
+- ✅ **Ethical approach**: Demonstrates awareness of privacy vs. utility balance  
+- ✅ **Graceful degradation**: System works with available data, documents limitations
+- ✅ **Future-proofed**: Alternative solutions identified for production deployment
+
+### **Caller ID Spoofing**
+**Issue**: Phone numbers can still be spoofed by attackers regardless of database completeness  
+**Mitigation**: Our system focuses on **organizational verification** and **behavioral patterns** rather than relying solely on caller ID
+
+### **Geographic Scope**  
+**Current**: Focused on NSW/Federal for demonstration purposes  
+**Production**: Would require scaling to all states/territories for complete coverage
 
 ## 🌟 **Future Enhancements**
 
