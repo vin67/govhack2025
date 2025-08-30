@@ -1,5 +1,5 @@
 {
-  "sorting_timestamp": "2025-08-30T10:47:24.303438",
+  "sorting_timestamp": "2025-08-30T17:19:35.587841",
   "agent_info": {
     "agent_id": "sorter_agent",
     "version": "1.0",
@@ -7,61 +7,57 @@
   },
   "input_data": {
     "source_file": "data/standardized_contacts.csv",
-    "total_records_processed": 422,
+    "total_records_processed": 410,
     "quality_grade": "A"
   },
   "categorization_results": {
     "by_organization_type": {
       "hospital": 266,
       "government": 131,
-      "threat": 13,
-      "charity": 12
+      "threat": 13
     },
     "by_contact_type": {
       "phone": 394,
-      "organization": 12,
       "email": 8,
       "website": 6,
       "general": 2
     },
     "by_risk_level": {
-      "safe": 409,
+      "safe": 397,
       "threat": 13
     },
     "by_geographic_region": {
-      "NSW": 300,
+      "NSW": 288,
       "Federal": 109,
       "Unknown": 13
     },
     "by_category": {
       "Healthcare Services": 266,
       "Official Services": 131,
-      "Security Threats": 13,
-      "Community Services": 12
+      "Security Threats": 13
     }
   },
   "quality_metrics": {
-    "average_confidence_score": 0.92,
+    "average_confidence_score": 0.927,
     "high_priority_contacts": 397,
-    "safe_contacts": 409,
+    "safe_contacts": 397,
     "threat_indicators": 13,
-    "safety_rate": 96.9
+    "safety_rate": 96.8
   },
   "output_files": {
     "data/verified/government_contacts.csv": 131,
     "data/verified/hospital_contacts.csv": 266,
-    "data/verified/charity_contacts.csv": 12,
     "data/verified/threat_contacts.csv": 13,
-    "data/verified/all_safe_contacts.csv": 409,
+    "data/verified/all_safe_contacts.csv": 397,
     "data/threats/threat_contacts.csv": 13,
     "data/verified/high_priority_contacts.csv": 397,
-    "data/sorted_contacts_master.csv": 422
+    "data/sorted_contacts_master.csv": 410
   },
   "anti_scam_summary": {
-    "verified_safe_contacts": 409,
+    "verified_safe_contacts": 397,
     "threat_indicators_identified": 13,
     "contacts_requiring_verification": 0,
-    "ready_for_whitelist": 409,
+    "ready_for_whitelist": 397,
     "ready_for_blacklist": 13
   },
   "recommendations": [

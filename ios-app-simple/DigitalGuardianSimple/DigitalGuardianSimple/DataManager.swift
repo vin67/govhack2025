@@ -67,14 +67,9 @@ final class DataManager: ObservableObject {
         isLoading = true
         loadError = nil
         
-        // Try to find CSV in bundle - using the complete dataset with phone, email, and website
-        guard let path = Bundle.main.path(forResource: "nsw_contacts_complete", ofType: "csv") else {
-            // Fall back to sorted_contacts_master if new file not found
-            if let fallbackPath = Bundle.main.path(forResource: "sorted_contacts_master", ofType: "csv") {
-                loadCSVFromPath(fallbackPath)
-                return
-            }
-            // If neither CSV found, use sample data
+        // Load the master CSV file with all contact data
+        guard let path = Bundle.main.path(forResource: "sorted_contacts_master", ofType: "csv") else {
+            // If CSV not found, use sample data
             loadSampleData()
             return
         }
