@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LLMQueryView: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var llmService = LLMService()
     @State private var queryText: String = ""
     @State private var response: String = ""
     @State private var isLoading: Bool = false
@@ -154,7 +155,7 @@ struct LLMQueryView: View {
                 Spacer()
                 
                 // Footer
-                Text("🤖 Powered by on-device AI • Data verified by GovHack 2025")
+                Text("🤖 OpenELM-270M on Apple Neural Engine • 383 verified contacts • GovHack 2025")
                     .font(.caption2)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -179,29 +180,14 @@ struct LLMQueryView: View {
         isLoading = true
         showingResponse = false
         
-        // Simulate LLM processing for now - will be replaced with real Core ML
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            // This is a mock response - will be replaced with real LLM
-            response = """
-            🔍 Searching verified government contacts...
+        Task {
+            let llmResponse = await llmService.processQuery(queryText)
             
-            For your query: "\(queryText)"
-            
-            📞 **Australian Taxation Office (ATO)**
-            Phone: 13 28 61
-            Service: Individual tax enquiries
-            ✅ Verified government contact
-            
-            📞 **ATO Business Line**
-            Phone: 13 28 66
-            Service: Business tax enquiries
-            ✅ Verified government contact
-            
-            ⚠️ **Important**: Only call numbers provided by Digital Guardian. These contacts are verified against official government databases.
-            """
-            
-            isLoading = false
-            showingResponse = true
+            await MainActor.run {
+                response = llmResponse
+                isLoading = false
+                showingResponse = true
+            }
         }
     }
 }

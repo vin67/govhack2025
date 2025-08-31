@@ -94,3 +94,10 @@ critic_report.json
 # Test files
 test_*.csv
 *_test.csv
+
+# Core ML models (large binary files)
+*.mlpackage/
+*.mlmodel
+*.mlmodelc/
+weight.bin
+ios-app-simple/OpenELM-270M/

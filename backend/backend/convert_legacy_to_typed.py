@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+3#!/usr/bin/env python3
 """
 Convert legacy contact data to typed format (phone, email, website records)
 """
